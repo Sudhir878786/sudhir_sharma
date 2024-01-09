@@ -1,6 +1,5 @@
 import React from "react";
 import Window from "../../../common/window";
-import styled from "styled-components";
 import "./css/header.css";
 import "./css/footer.css";
 import "./css/about.css";
@@ -11,145 +10,6 @@ import "./css/main.css";
 import "./css/portfolio.css";
 import "./css/service.css";
 import "./css/testimonials.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWindows } from "@fortawesome/free-brands-svg-icons";
-import ReactLogo from "../../../../assets/images/welcome/React_Logo.png";
-import ReduxLogo from "../../../../assets/images/welcome/Redux_Logo.png";
-import FontawesomeLogo from "../../../../assets/images/welcome/Fontawesome_Logo.png";
-import responsiveImage from "../../../../assets/images/welcome/Responsive-Design-Image.png";
-import programsImage from "../../../../assets/images/welcome/Programs-Image.png";
-
-const StyledSliders = styled.div`
-    width: 100%;
-    height: 100%;
-
-    font-size: 30px;
-    @media (max-width: 768px) {
-        font-size: 20px;
-    }
-
-    .slide-00 {
-        font-size: 40px !important;
-    }
-
-    .slide-00,
-    .slide-01,
-    .slide-02 {
-        align-items: center;
-        span {
-            text-align: center;
-        }
-    }
-
-    .slide-01 {
-        img {
-            margin-top: 25px;
-            width: 280px;
-            height: 280px;
-
-            @media (max-width: 768px) {
-                width: 180px;
-                height: 180px;
-            }
-        }
-    }
-
-    .slide-02 {
-        img {
-            margin-top: 25px;
-            width: 330px;
-            height: 280px;
-
-            @media (max-width: 768px) {
-                width: 210px;
-                height: 180px;
-            }
-        }
-    }
-
-    .slide-03 {
-        ul {
-            text-align: left;
-            margin: 10px 0 0 0;
-        }
-
-        li {
-            margin: 5px 0;
-        }
-    }
-
-    .slide-04 {
-        a {
-            color: var(--windows-color);
-            text-decoration: none;
-
-            :visited {
-                color: var(--windows-color);
-            }
-        }
-    }
-`;
-
-const StyledSlide = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: var(--windows-text-color);
-    padding: 5%;
-    box-sizing: border-box;
-    user-select: none;
-    cursor: default;
-`;
-
-const StyledWindowsLogo = styled.div`
-    color: #0693e3;
-    filter: drop-shadow(2px 2px 2px #12121280);
-
-    font-size: 320px;
-
-    @media (max-width: 768px) {
-        font-size: 230px;
-    }
-`;
-
-const StyledListTitle = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
-    span {
-        text-align: center;
-        font-size: 40px;
-        @media (max-width: 768px) {
-            font-size: 30px;
-        }
-    }
-    img {
-        width: 310px;
-        height: 270px;
-
-        @media (max-width: 768px) {
-            width: 210px;
-            height: 180px;
-        }
-    }
-`;
-
-const StyledListItem = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    img {
-        display: inline;
-        width: 30px;
-        height: 30px;
-    }
-`;
 
 const WINDOW_MOBILE_MIN_SIZE = {
     width: 320,
@@ -160,7 +20,6 @@ const WINDOW_MIN_SIZE =
     "ontouchstart" in window ? WINDOW_MOBILE_MIN_SIZE : undefined;
 
 const Welcome = (props) => {
-    const { focusLevel, maxFocusLevel } = props;
 
     const handleCloseWindow = () => {
         localStorage.setItem("sawWelcomeMessage", "1");
@@ -216,7 +75,7 @@ const Welcome = (props) => {
                   <h1>Puskar Adhikari</h1>
                   <h3>I build things for the web</h3>
                   <div className="cv-btn">
-                    <a href="#">Donwload CV</a>
+                    <a href="https://drive.google.com/uc?id=1Ii5Sv-p4BfSlnrIsJZ2az-rtdn0iH6nx&export=download">Donwload CV</a>
                   </div>
                 </div>
               </div>
@@ -436,7 +295,7 @@ const Welcome = (props) => {
                 <div className="testimonials-box">
                   <div className="testimonials-img">
                     <div className="test-img">
-                      <img src="./img/testimonials/1.jpeg" />
+                      <img src="./img/testimonials/1.jpeg" alt="testmonials1"/>
                     </div>
                     <div className="testimonials-text">
                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, aliquam. Corrupti molestias quae culpa accusamus magni accusantium itaque dolore soluta.</p>
@@ -446,7 +305,7 @@ const Welcome = (props) => {
                   </div>
                   <div className="testimonials-img">
                     <div className="test-img">
-                      <img src="./img/testimonials/2.jpg" />
+                      <img src="./img/testimonials/2.jpg" alt="testmonials2" />
                     </div>
                     <div className="testimonials-text">
                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, aliquam. Corrupti molestias quae culpa accusamus magni accusantium itaque dolore soluta.</p>
@@ -456,7 +315,7 @@ const Welcome = (props) => {
                   </div>
                   <div className="testimonials-img">
                     <div className="test-img">
-                      <img src="./img/testimonials/3.jpg" />
+                      <img src="./img/testimonials/3.jpg"  alt="testmonials3"/>
                     </div>
                     <div className="testimonials-text">
                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, aliquam. Corrupti molestias quae culpa accusamus magni accusantium itaque dolore soluta.</p>
@@ -466,7 +325,7 @@ const Welcome = (props) => {
                   </div>
                   <div className="testimonials-img">
                     <div className="test-img">
-                      <img src="./img/testimonials/4.jpg" />
+                      <img src="./img/testimonials/4.jpg" alt="testmonials4"/>
                     </div>
                     <div className="testimonials-text">
                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, aliquam. Corrupti molestias quae culpa accusamus magni accusantium itaque dolore soluta.</p>
@@ -491,7 +350,7 @@ const Welcome = (props) => {
               <div className="blog-content">
                 <div className="blog-box">
                   <div className="blog-img">
-                    <img src="./img/blogs/1.jpg" />
+                    <img src="./img/blogs/1.jpg" alt="blogs1"/>
                   </div>
                   <div className="blog-text">
                     <div className="blog-info">
@@ -505,7 +364,7 @@ const Welcome = (props) => {
                 </div>
                 <div className="blog-box">
                   <div className="blog-img">
-                    <img src="./img/blogs/2.png" />
+                    <img src="./img/blogs/2.png" alt="blogs1" />
                   </div>
                   <div className="blog-text">
                     <div className="blog-info">
@@ -519,7 +378,7 @@ const Welcome = (props) => {
                 </div>
                 <div className="blog-box">
                   <div className="blog-img">
-                    <img src="./img/blogs/3.jpg" />
+                    <img src="./img/blogs/3.jpg" alt="blogs1" />
                   </div>
                   <div className="blog-text">
                     <div className="blog-info">
@@ -565,7 +424,7 @@ const Welcome = (props) => {
                 </div>
                 <div className="row">
                   <div className="button btn">
-                    <a href="#">Get In Touch</a>
+                    <a href="https://drive.google.com/uc?id=1Ii5Sv-p4BfSlnrIsJZ2az-rtdn0iH6nx&export=download">Get In Touch</a>
                   </div>
                 </div>
               </div>

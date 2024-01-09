@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef } from "react";
 
-//Calls a callback to update an animation before the next repaint
+// Calls a callback to update an animation before the next repaint
 const useRequestAnimationFrame = (callback, dependencyArray = []) => {
     const requestRef = useRef();
 
@@ -12,7 +12,7 @@ const useRequestAnimationFrame = (callback, dependencyArray = []) => {
 
         requestRef.current = requestAnimationFrame(animate);
         return () => cancelAnimationFrame(requestRef.current);
-    }, [callback, ...dependencyArray]);
+    }, [callback, dependencyArray]); // Remove the spread element here
 };
 
 export default useRequestAnimationFrame;
