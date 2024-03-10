@@ -1,4 +1,4 @@
-# [Windows Portfolio](https://ezequielarchi.github.io/Windows-Portfolio/)
+# [Windows Portfolio]()
 
 This is a React-based frontend project that simulates the behavior of the Windows 10 operating system. The goal of this project is to provide a familiar and easy-to-use interface for users who are accustomed to using Windows.
 
@@ -37,6 +37,6 @@ This project was developed using React with the following libraries:
 * Fontawesome Icons
 
 ## Contact
-If you have any questions or comments about this project, feel free to [contact me](mailto:lucianoarchidiacono@gmail.com).  
+If you have any questions or comments about this project, feel free to [contact me](mailto:sudhirbhu34567@gmail.com).  
   
 Thanks for your time.
