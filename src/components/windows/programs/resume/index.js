@@ -65,14 +65,14 @@ const Resume = (props) => {
                 <StyledHeaderContainer>
                     <StyledHeaderButton
                         title="Download"
-                        href="https://drive.google.com/uc?id=1Ii5Sv-p4BfSlnrIsJZ2az-rtdn0iH6nx&export=download"
+                        href="https://drive.google.com/file/d/1Nz0NFsT_nX6Gm16Lw6hz927-ezNuN4fP/&export=download"
                         target="_blank"
                     >
                         <FontAwesomeIcon icon={faDownload} />
                     </StyledHeaderButton>
                     <StyledHeaderButton
                         title="Open in new Window"
-                        href="https://drive.google.com/file/d/1Ii5Sv-p4BfSlnrIsJZ2az-rtdn0iH6nx/view"
+                        href="https://drive.google.com/file/d/1Nz0NFsT_nX6Gm16Lw6hz927-ezNuN4fP/view"
                         target="_blank"
                     >
                         <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
@@ -81,7 +81,7 @@ const Resume = (props) => {
                 <StyledIframe
                     width="100%"
                     height="100%"
-                    src="https://drive.google.com/file/d/1Ii5Sv-p4BfSlnrIsJZ2az-rtdn0iH6nx/preview"
+                    src="https://drive.google.com/file/d/1Nz0NFsT_nX6Gm16Lw6hz927-ezNuN4fP/preview"
                     title="Resume"
                 />
             </StyledResume>
