@@ -677,15 +677,17 @@ const Welcome = (props) => {
                 <div className="contact-form">
                   <form action="https://formsubmit.co/sudhirsharma@iitbhilai.ac.in" method="POST">
                     <h3 className="title">Contact me</h3>
-                    <div className="row">
-                      <input type="hidden" name="_template" defaultValue="table" />
-                      <input type="hidden" name="_subject" defaultValue="Contact Inquiry" />
-                      <input className="contact-input" placeholder="First Name" type="text" name="fname" required />
-                      <input type="text" className="contact-input" placeholder="Last Name" name="lname" required />
-                    </div>
-                    <div className="row">
-                      <input type="text" className="contact-input" placeholder="Phone" name="phone" required />
-                      <input type="email" className="contact-input" placeholder="Email" name="email" required />
+                    <input type="hidden" name="_template" defaultValue="table" />
+                    <input type="hidden" name="_subject" defaultValue="Contact Inquiry" />
+                    <div style={{width: '100%'}}>
+                      <div className="row">
+                        <input className="contact-input" placeholder="First Name" type="text" name="fname" required />
+                        <input className="contact-input" placeholder="Last Name" type="text" name="lname" required />
+                      </div>
+                      <div className="row">
+                        <input className="contact-input" placeholder="Phone" type="text" name="phone" required />
+                        <input className="contact-input" placeholder="Email" type="email" name="email" required />
+                      </div>
                     </div>
                     <div className="row">
                       <textarea className="contact-input textarea" placeholder="Message" name="message" required defaultValue={""} />

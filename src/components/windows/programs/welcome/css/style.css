@@ -1020,6 +1020,30 @@ header .circle {
   grid-template-columns: repeat(2, 1fr);
 }
 
+.contact-form .row {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.contact-form .row input.contact-input {
+  flex: 1;
+  width: 50%;
+  text-align: left;
+  padding: 0.8rem 1rem;
+}
+
+.contact-form .contact-input {
+  margin: 0;
+  border: none;
+  outline: none;
+  background: #f3f3f3;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  transition: 0.3s;
+}
+
 .contact-info {
   padding-right: 2rem;
 }
@@ -1077,17 +1101,19 @@ header .circle {
 
 .contact-form .row {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  grid-column-gap: 0.6rem;
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
 }
 
 .contact-input {
   padding: 0.8rem 2.1rem;
-  margin: 0.6rem 0;
+  margin: 0;
   border: none;
   outline: none;
   background: #f3f3f3;
+  width: 100%;
+  box-sizing: border-box;
   border-radius: 0.5rem;
   /* font-weight: 600; */
   font-size: 1.1rem;
