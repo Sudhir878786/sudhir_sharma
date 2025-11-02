@@ -101,7 +101,7 @@ const MailContent = (props) => {
 
             <StyledInputContainer>
                 <StyledEmailText>From:</StyledEmailText>
-                <StyledEmailText>{from}</StyledEmailText>
+                <StyledEmailText>{senderName} &lt;{from}&gt;</StyledEmailText>
             </StyledInputContainer>
 
             <StyledInputContainer>

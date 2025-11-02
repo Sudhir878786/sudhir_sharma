@@ -89,7 +89,7 @@ const ExploreMenu = () => {
             <StyledTitle>Explore</StyledTitle>
             <StyledExploreOptions>
                 <StyledExploreOption
-                    href="https://www.linkedin.com/in/luciano-archidiacono"
+                    href="https://www.linkedin.com/in/sudhirsharma87/"
                     target="_blank"
                 >
                     <StyledExploreOptionImg
@@ -102,7 +102,7 @@ const ExploreMenu = () => {
                     </StyledExploreOptionTitle>
                 </StyledExploreOption>
                 <StyledExploreOption
-                    href="https://github.com/EzequielArchi/Windows-Portfolio"
+                    href="https://github.com/Sudhir878786/"
                     target="_blank"
                 >
                     <StyledExploreOptionImg

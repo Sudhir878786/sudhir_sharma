@@ -616,13 +616,24 @@ header .circle {
 .grid {
   width: 100%;
   margin: 1.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.grid > a {
+  display: block;
+  width: 33.33%;
+  box-sizing: border-box;
 }
 
 .grid-item {
-  width: 33.33%;
+  width: 100%;
   padding: 1rem 1.2rem;
   display: flex;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .gallery-image {
@@ -1769,8 +1780,12 @@ header .circle {
     top: 54%;
   }
 
-  .grid-item {
+  .grid > a {
     width: 50%;
+  }
+
+  .grid-item {
+    width: 100%;
   }
 
   .gallery-image {
@@ -1938,6 +1953,10 @@ header .circle {
 }
 
 @media (max-width: 600px) {
+  .grid > a {
+    width: 100%;
+  }
+
   .grid-item {
     width: 100%;
   }
