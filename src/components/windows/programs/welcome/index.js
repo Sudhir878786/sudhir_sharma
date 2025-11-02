@@ -26,12 +26,8 @@ const Welcome = (props) => {
   const shouldDisplay = (filterClass) => {
     return activeFilter === '*' || activeFilter === filterClass;
   };
-    const handleCloseWindow = () => {
-        localStorage.setItem("sawWelcomeMessage", "1");
-    };
-
     return (
-        <Window {...props} minSize={WINDOW_MIN_SIZE} onClose={handleCloseWindow}>
+        <Window {...props} minSize={WINDOW_MIN_SIZE}>
            <div>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

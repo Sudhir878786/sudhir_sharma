@@ -24,20 +24,16 @@ const App = () => {
     };
 
     useLayoutEffect(() => {
-        const showWelcomeMessage = () => {
-            const sawWelcomeMessage = localStorage.getItem("sawWelcomeMessage");
-            if (sawWelcomeMessage !== "1" && !hasShownWelcome.current) {
-                dispatch(addProgram({ id: "welcome" }));
-                hasShownWelcome.current = true;
-            }
-        };
+        // Always show welcome program on page load
+        if (!hasShownWelcome.current) {
+            dispatch(addProgram({ id: "welcome" }));
+            hasShownWelcome.current = true;
+        }
         
         const storageTheme = loadThemeFromStorage(defaultTheme);
 
         if (storageTheme) setAppTheme(storageTheme);
 
-        showWelcomeMessage();
-        
         mountGlobalEvents();
         return () => {
             unmountGlobalEvents();
