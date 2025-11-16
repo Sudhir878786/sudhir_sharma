@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/static/css/main.de910853.css",
+    "main.js": "/static/js/main.38976b4b.js",
+    "static/media/Handsome_Man.png": "/static/media/Handsome_Man.66fb9cc97e3d1cb250ea.png",
+    "static/media/Person.png": "/static/media/Person.66fb9cc97e3d1cb250ea.png",
+    "static/media/me.png": "/static/media/me.990f327daa8faa8e9437.png",
+    "static/media/weathre.png": "/static/media/weathre.2406bd2521dfee3dfa4c.png",
+    "static/media/covid.jpg": "/static/media/covid.7ee8e2639025c5590e42.jpg",
+    "static/media/bitcoin.jpg": "/static/media/bitcoin.db642967702d560b6f12.jpg",
+    "static/media/quantumml.jpg": "/static/media/quantumml.a64e43d7d60fddb351d7.jpg",
+    "static/media/pythoncff.jpg": "/static/media/pythoncff.dda7de55a6a62e184852.jpg",
+    "static/media/resumerank.jpg": "/static/media/resumerank.e8b9fea3efca30efe081.jpg",
+    "static/media/metamask.jpg": "/static/media/metamask.acc80a4db1a542336fcc.jpg",
+    "static/media/intervuepro.jpg": "/static/media/intervuepro.671fd83b363243dc0662.jpg",
+    "static/media/map.png": "/static/media/map.145789dc3c28d1e201a9.png",
+    "static/media/Browser_Icon.png": "/static/media/Browser_Icon.fe74ad5a0c8e3484a1e4.png",
+    "static/media/landf.jpg": "/static/media/landf.30734b53981621d28a27.jpg",
+    "static/media/Welcome_Icon.png": "/static/media/Welcome_Icon.3594b04d2e508fd46c00.png",
+    "static/media/tps.png": "/static/media/tps.e46c603ad5b47175a89d.png",
+    "static/media/testi.svg": "/static/media/testi.cc0c1cf87ef0e4ec8e9dfbe199ce8b30.svg",
+    "static/media/image.png": "/static/media/image.83495003efb18ccf76b8.png",
+    "static/media/contact-bg.png": "/static/media/contact-bg.4b4a30b4f5a3bb81d373.png",
+    "static/media/AI.png": "/static/media/AI.51a1394a4e896fd22cac.png",
+    "static/media/Mail_Icon.png": "/static/media/Mail_Icon.47e4956704e76234da9b.png",
+    "static/media/android.png": "/static/media/android.f049067a75ea5fb81313.png",
+    "static/media/points3.png": "/static/media/points3.cad43da2de2c987f7951.png",
+    "static/media/points2.png": "/static/media/points2.d1c839b2a78ccbb9c5a3.png",
+    "index.html": "/index.html",
+    "main.de910853.css.map": "/static/css/main.de910853.css.map",
+    "main.38976b4b.js.map": "/static/js/main.38976b4b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.de910853.css",
+    "static/js/main.38976b4b.js"
+  ]
+}
