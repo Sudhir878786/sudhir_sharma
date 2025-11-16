@@ -9,6 +9,7 @@ import { addProgram } from "./store/slices/programs";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingScreen from "./components/LoadingScreen";
 
+
 export const ThemeModifierContext = createContext({});
 
 const App = () => {
