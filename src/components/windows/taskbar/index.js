@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef } from "react";
 import styled, { css } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWindows } from "@fortawesome/free-brands-svg-icons";
+import { faBell, faGripVertical, faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { AVAILABLE_ICONS } from "../icons/utils";
 import {
@@ -13,6 +13,9 @@ import {
     toggleCalendar,
     toggleWindowsMenu,
 } from "../../../store/slices/popups";
+import { toggleNotifications } from "../../../store/slices/notifications";
+import { toggleWidgets } from "../../../store/slices/widgets";
+import { toggleTheme } from "../../../store/slices/theme";
 import { shadeColor } from "../../../common/colorCommonFunctions";
 
 const StyledTaskbar = styled.div`
@@ -62,11 +65,20 @@ const StyledOption = styled.div`
         height: auto;
         width: 60%;
     }
+    
+    .kali-logo {
+        height: 24px;
+        width: 24px;
+        filter: brightness(0) saturate(100%) invert(76%) sepia(13%) saturate(1586%) hue-rotate(119deg) brightness(93%) contrast(91%);
+    }
 
     &:hover {
         background-color: #cccccc40;
         .icon-option {
             color: ${({ theme }) => shadeColor(theme.windowsColor, 60)};
+        }
+        .kali-logo {
+            filter: brightness(0) saturate(100%) invert(87%) sepia(13%) saturate(1586%) hue-rotate(119deg) brightness(103%) contrast(91%);
         }
     }
     
@@ -81,6 +93,47 @@ const StyledOption = styled.div`
         css`
             background-color: #cccccc40;
         `}
+`;
+
+const StyledSystemTray = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 100%;
+`;
+
+const StyledSystemIcon = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 10px;
+    cursor: pointer;
+    position: relative;
+
+    :hover {
+        background-color: #cccccc40;
+    }
+
+    .icon-option {
+        font-size: 16px;
+    }
+
+    .notification-badge {
+        position: absolute;
+        top: 8px;
+        right: 6px;
+        width: 18px;
+        height: 18px;
+        background-color: #d13438;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: bold;
+        color: white;
+    }
 `;
 
 const StyledWindowsDateTime = styled.div`
@@ -119,6 +172,10 @@ const Taskbar = () => {
 
     const dispatch = useDispatch();
 
+    const notifications = useSelector(state => state.notifications.notifications);
+    const unreadCount = notifications.filter(n => !n.read).length;
+    const isDarkTheme = useSelector(state => state.theme.mode === 'dark');
+
     const onClickProgramOption = (instanceId) => {
         const program = currentPrograms[instanceId];
         if (program.isMinimized || program.focusLevel === maxFocusLevel) {
@@ -139,6 +196,18 @@ const Taskbar = () => {
 
     const handleWindowsClick = () => {
         dispatch(toggleWindowsMenu());
+    };
+
+    const handleNotificationsClick = () => {
+        dispatch(toggleNotifications());
+    };
+
+    const handleWidgetsClick = () => {
+        dispatch(toggleWidgets());
+    };
+
+    const handleThemeClick = () => {
+        dispatch(toggleTheme());
     };
 
     useLayoutEffect(() => {
@@ -180,7 +249,11 @@ const Taskbar = () => {
                 onClick={handleWindowsClick}
                 tabIndex={programLength + 1}
             >
-                <FontAwesomeIcon icon={faWindows} className="icon-option" />
+                <img 
+                    src="https://www.kali.org/images/kali-dragon-icon.svg" 
+                    alt="Kali Linux" 
+                    className="kali-logo"
+                />
             </StyledOption>
             <StyledProgramOptions>
                 {currentProgramArray.map((instanceId) => {
@@ -205,6 +278,23 @@ const Taskbar = () => {
                     );
                 })}
             </StyledProgramOptions>
+            <StyledSystemTray>
+                <StyledSystemIcon onClick={handleThemeClick} title={isDarkTheme ? "Light mode" : "Dark mode"}>
+                    <FontAwesomeIcon 
+                        icon={isDarkTheme ? faSun : faMoon} 
+                        className="icon-option" 
+                    />
+                </StyledSystemIcon>
+                <StyledSystemIcon onClick={handleNotificationsClick} title="Notifications">
+                    <FontAwesomeIcon icon={faBell} className="icon-option" />
+                    {unreadCount > 0 && (
+                        <span className="notification-badge">{unreadCount}</span>
+                    )}
+                </StyledSystemIcon>
+                <StyledSystemIcon onClick={handleWidgetsClick} title="Widgets">
+                    <FontAwesomeIcon icon={faGripVertical} className="icon-option" />
+                </StyledSystemIcon>
+            </StyledSystemTray>
             <StyledWindowsDateTime tabIndex={programLength + 2}
                 onClick={handleDateTimeClick}
                 id="date-time-taskbar"

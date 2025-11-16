@@ -1,8 +1,60 @@
 import React from "react";
 import { useState } from 'react';
 import Window from "../../../common/window";
+import BlogSection from "../blog/BlogSection";
+import BlogPost from "../blog/BlogPost";
+import styled, { keyframes } from 'styled-components';
 import "./css/style.css";
 import "./css/exp.css";
+
+const gridAnimation = keyframes`
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(40px);
+  }
+`;
+
+const WelcomeWrapper = styled.div`
+  background: linear-gradient(180deg, #1e1e1e 0%, #0f0f0f 100%);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(rgba(78, 201, 176, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(78, 201, 176, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+    animation: ${gridAnimation} 2s linear infinite;
+    pointer-events: none;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 50%, rgba(78, 201, 176, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(86, 156, 214, 0.1) 0%, transparent 50%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  main {
+    position: relative;
+    z-index: 1;
+  }
+`;
 
 
 
@@ -16,6 +68,7 @@ const WINDOW_MIN_SIZE =
 
 const Welcome = (props) => {
   const [activeFilter, setActiveFilter] = useState('*');
+  const [selectedBlog, setSelectedBlog] = useState(null);
 
   // Function to change filter
   const handleFilterChange = (filter) => {
@@ -26,9 +79,22 @@ const Welcome = (props) => {
   const shouldDisplay = (filterClass) => {
     return activeFilter === '*' || activeFilter === filterClass;
   };
+
+  // Listen for blog post open events
+  React.useEffect(() => {
+    const handleOpenBlogPost = (event) => {
+      setSelectedBlog(event.detail);
+    };
+    
+    window.addEventListener('openBlogPost', handleOpenBlogPost);
+    
+    return () => {
+      window.removeEventListener('openBlogPost', handleOpenBlogPost);
+    };
+  }, []);
     return (
         <Window {...props} minSize={WINDOW_MIN_SIZE}>
-           <div>
+           <WelcomeWrapper>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Hey, I'm Sudhir</title>
@@ -53,8 +119,23 @@ const Welcome = (props) => {
             </div>
             <nav>
               <div className="container">
-                <div className="logo">
-                  <img src={require("./img/shapes/me.png")} alt="Logo" />
+                <div className="logo" style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                  <img 
+                    src="https://www.kali.org/images/kali-dragon-icon.svg" 
+                    alt="Kali Dragon Logo" 
+                    style={{
+                      width: '50px',
+                      height: '50px',
+                      filter: 'brightness(0) saturate(100%) invert(76%) sepia(13%) saturate(1586%) hue-rotate(119deg) brightness(93%) contrast(91%)'
+                    }}
+                  />
+                  <span style={{
+                    color: '#4ec9b0',
+                    fontSize: '1.5rem',
+                    fontWeight: 'bold',
+                    textShadow: '0 0 10px rgba(78, 201, 176, 0.5)',
+                    letterSpacing: '2px'
+                  }}>SUDHIR</span>
                 </div>
                 <div className="links">
                   <ul>
@@ -66,6 +147,9 @@ const Welcome = (props) => {
                     </li>
                     <li>
                       <a href="#portfolio">Portfolio</a>
+                    </li>
+                    <li>
+                      <a href="#blog">Blog</a>
                     </li>
                     <li>
                       <a href="#about">About</a>
@@ -460,6 +544,10 @@ const Welcome = (props) => {
         </div>
       </div>
     </section>
+          
+          {/* Blog Section */}
+          <BlogSection />
+          
          {/* About section */}
       <section className="about section" id="about">
         <div className="container">
@@ -796,9 +884,16 @@ const Welcome = (props) => {
             </div>
           </div>
         </footer>
-      </div>
       
+      {/* Blog Post Modal */}
+      {selectedBlog && (
+        <BlogPost 
+          blog={selectedBlog} 
+          onClose={() => setSelectedBlog(null)} 
+        />
+      )}
       
+        </WelcomeWrapper>
         </Window>
     );
 };

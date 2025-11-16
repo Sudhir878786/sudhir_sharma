@@ -1,4 +1,4 @@
-import React, { createContext, useLayoutEffect, useRef, useState } from "react";
+import React, { createContext, useLayoutEffect, useRef, useState, useEffect } from "react";
 import { ThemeProvider } from "styled-components";
 import Windows from "./components/windows";
 import { defaultTheme } from "./theme";
@@ -6,16 +6,20 @@ import { loadThemeFromStorage, saveThemeToStorage } from "./util/themeHandler";
 import { mountGlobalEvents, unmountGlobalEvents } from "./util/eventsHandlers";
 import GlobalStyles from "./styles/GlobalStyles";
 import { addProgram } from "./store/slices/programs";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import LoadingScreen from "./components/LoadingScreen";
 
 export const ThemeModifierContext = createContext({});
 
 const App = () => {
     const [appTheme, setAppTheme] = useState(defaultTheme);
+    const [isLoading, setIsLoading] = useState(true);
 
     const dispatch = useDispatch();
 
     const hasShownWelcome = useRef(false);
+    
+    const themeMode = useSelector(state => state.theme?.mode || 'light');
 
     const changeThemeColors = (key, value) => {
         const newTheme = saveThemeToStorage(key, value, appTheme);
@@ -40,11 +44,21 @@ const App = () => {
         };
     }, [dispatch]);
 
+    useEffect(() => {
+        if (themeMode) {
+            document.documentElement.setAttribute('data-theme', themeMode);
+        }
+    }, [themeMode]);
+
     return (
         <ThemeModifierContext.Provider value={{ changeThemeColors }}>
             <ThemeProvider theme={appTheme}>
                 <GlobalStyles />
-                <Windows />
+                {isLoading ? (
+                    <LoadingScreen onLoadComplete={() => setIsLoading(false)} />
+                ) : (
+                    <Windows />
+                )}
             </ThemeProvider>
         </ThemeModifierContext.Provider>
     );

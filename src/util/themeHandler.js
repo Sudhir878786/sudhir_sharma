@@ -23,18 +23,34 @@ export const loadThemeFromStorage = (defaultTheme) => {
 
     if (!storageTheme) return null;
 
-    const parsedStorageTheme = JSON.parse(storageTheme);
-    const storageThemeKeys = Object.keys(parsedStorageTheme);
-    const themeKeys = Object.keys(defaultTheme);
-
-    if (
-        storageThemeKeys.some(
-            (value, index) => value !== themeKeys[index]
-        )
-    ) {
-        localStorage.removeItem("theme");
-        return;
+    // Handle string values (from Redux theme slice)
+    if (storageTheme === "light" || storageTheme === "dark") {
+        return null; // Let Redux handle theme mode
     }
 
-    return parsedStorageTheme;
+    try {
+        const parsedStorageTheme = JSON.parse(storageTheme);
+        
+        // If it's not an object, return null
+        if (typeof parsedStorageTheme !== 'object' || parsedStorageTheme === null) {
+            return null;
+        }
+
+        const storageThemeKeys = Object.keys(parsedStorageTheme);
+        const themeKeys = Object.keys(defaultTheme);
+
+        if (
+            storageThemeKeys.some(
+                (value, index) => value !== themeKeys[index]
+            )
+        ) {
+            localStorage.removeItem("theme");
+            return null;
+        }
+
+        return parsedStorageTheme;
+    } catch (e) {
+        // If JSON parse fails, it's probably a string value from Redux
+        return null;
+    }
 }
