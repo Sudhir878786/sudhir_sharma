@@ -1,42 +1,55 @@
-# [Windows Portfolio]()
+# Windows Portfolio - Sudhir Sharma
 
-This is a React-based frontend project that simulates the behavior of the Windows 10 operating system. The goal of this project is to provide a familiar and easy-to-use interface for users who are accustomed to using Windows.
+A React-based portfolio simulating Windows 10 OS interface, showcasing expertise in AI/ML & Search Systems, Backend & Distributed Systems, and Algorithms & Competitive Programming.
 
-![plot](./src/assets/images/readme/Windows-Screenshot.png)
+## 🎯 Core Focus Areast an realtime proview view(or some other name ) number of refresh
 
-## Features
-The desktop contains different programs, each with their own set of features:
+**AI/ML & Search Systems Engineer**
+Expert in building RAG pipelines, semantic search engines, vector databases (FAISS, ChromaDB), and scalable AI integrations using LangChain, OpenAI APIs, and cloud-native deployments.
 
-### Browser:
-This application allows you to browse different web pages and has typical browser options such as the option to go back or forward in history, refresh the current page, go to a home page, or enter a URL in the search bar.  
-Please note that not all pages allow connection within an embedded page for security reasons.
+**Backend & Distributed Systems Developer**
+Building scalable microservices and distributed systems with Spring Boot, PySpark, SQL, .NET. Expert in data pipelines, REST APIs, and cloud deployments.
 
-### Console:
-This application recreates the Windows console along with some typical commands. At the same time, an example file system is provided for you to explore and view its contents.
+**Algorithms & Competitive Programmer**
+Deep expertise in data structures, algorithms, and problem-solving through competitive programming.
 
-### Settings:
-This application allows you to configure various color parameters within the project, such as the main color where it is displayed, and the light or dark color system and desktop background color.
+## 🚀 Features
 
-### Resume:
-Here you can find my resume in a file that you can view.
+### Cinematic Portfolio
+- Movie poster-style project showcase with 14+ real projects
+- GitHub API integration for live commit display
+- Animated transitions and atmospheric effects
+- Real-time profile view counter
 
-### Mail:
-Here you can see all the emails that have arrived for the user.
+### Welcome Page
+- Professional introduction with real-time typewriter effect
+- Experience timeline with company logos
+- Services showcase
+- Testimonials section
+- Contact form
 
-### Welcome:
-A welcome message for the user.
+### Console
+Windows-style terminal with filesystem exploration and custom commands.
 
-### Taskbar:
-In addition, you can find the Windows menu on the taskbar with some extra options and links if you are interested in this work done, as well as a calendar to manage your schedule.
+### Settings
+Customize theme colors, dark/light mode, and background preferences.
 
-## Technologies Used
-This project was developed using React with the following libraries:
+### Browser
+Embedded web browser with navigation controls.
 
-* Redux
-* Styled Components
-* Fontawesome Icons
+### Mail & Resume
+Access emails and downloadable resume.
 
-## Contact
-If you have any questions or comments about this project, feel free to [contact me](mailto:sudhirbhu34567@gmail.com).  
-  
-Thanks for your time.
+## 🛠️ Technologies
+
+* **Frontend:** React 18+, Redux, Styled Components
+* **APIs:** GitHub REST API v3
+* **Graphics:** Node Canvas for image generation
+* **Icons:** FontAwesome
+* **State Management:** Redux Toolkit
+
+## 📧 Contact
+
+**Sudhir Sharma**
+AI/ML & Search Systems Engineer
+📩 [sudhirsharma@iitbhilai.ac.in](mailto:sudhirsharma@iitbhilai.ac.in)

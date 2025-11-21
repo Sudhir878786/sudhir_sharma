@@ -1,0 +1,31 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="projectGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ec9b0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#569cd6;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Folder base -->
+  <path d="M8 16 L8 52 C8 54 10 56 12 56 L52 56 C54 56 56 54 56 52 L56 20 C56 18 54 16 52 16 L32 16 L28 12 C27 11 26 10 24 10 L12 10 C10 10 8 12 8 14 L8 16 Z" 
+        fill="url(#projectGrad)" opacity="0.9" filter="url(#glow)"/>
+  
+  <!-- Film strip detail -->
+  <rect x="18" y="26" width="28" height="20" rx="2" fill="#1e1e1e" opacity="0.8"/>
+  
+  <!-- Code brackets -->
+  <path d="M24 31 L20 36 L24 41" stroke="#4ec9b0" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M40 31 L44 36 L40 41" stroke="#4ec9b0" stroke-width="2" stroke-linecap="round" fill="none"/>
+  
+  <!-- Dots -->
+  <circle cx="30" cy="36" r="1.5" fill="#569cd6"/>
+  <circle cx="34" cy="36" r="1.5" fill="#569cd6"/>
+  <circle cx="38" cy="36" r="1.5" fill="#569cd6"/>
+</svg>

@@ -4,6 +4,8 @@ import Console from "../console";
 import Mail from "../mail";
 import Resume from "../resume";
 import Welcome from "../welcome";
+import Projects from "../projects";
+import Blog from "../blog";
 
 export const AVAILABLE_PROGRAMS = {
     resume: Resume,
@@ -12,6 +14,8 @@ export const AVAILABLE_PROGRAMS = {
     console: Console,
     mail: Mail,
     welcome: Welcome,
+    projects: Projects,
+    blog: Blog,
 };
 
 

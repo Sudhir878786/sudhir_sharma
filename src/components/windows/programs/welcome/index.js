@@ -1,8 +1,6 @@
 import React from "react";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Window from "../../../common/window";
-import BlogSection from "../blog/BlogSection";
-import BlogPost from "../blog/BlogPost";
 import styled, { keyframes } from 'styled-components';
 import "./css/style.css";
 import "./css/exp.css";
@@ -13,6 +11,58 @@ const gridAnimation = keyframes`
   }
   100% {
     transform: translateY(40px);
+  }
+`;
+
+const ProfileViewCounter = styled.div`
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: linear-gradient(135deg, rgba(78, 201, 176, 0.2), rgba(61, 165, 138, 0.3));
+  border: 1px solid rgba(78, 201, 176, 0.4);
+  border-radius: 20px;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(78, 201, 176, 0.2);
+  animation: ${gridAnimation} 2s ease-in-out infinite alternate;
+  
+  .view-icon {
+    color: #4ec9b0;
+    font-size: 18px;
+  }
+  
+  .view-count {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 16px;
+    text-shadow: 0 0 10px rgba(78, 201, 176, 0.5);
+  }
+  
+  .view-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+  
+  @media (max-width: 768px) {
+    top: -35px;
+    right: 10px;
+    padding: 6px 15px;
+    
+    .view-icon {
+      font-size: 14px;
+    }
+    
+    .view-count {
+      font-size: 14px;
+    }
+    
+    .view-label {
+      font-size: 10px;
+    }
   }
 `;
 
@@ -67,30 +117,17 @@ const WINDOW_MIN_SIZE =
     "ontouchstart" in window ? WINDOW_MOBILE_MIN_SIZE : undefined;
 
 const Welcome = (props) => {
-  const [activeFilter, setActiveFilter] = useState('*');
-  const [selectedBlog, setSelectedBlog] = useState(null);
+  const [profileViews, setProfileViews] = useState(0);
 
-  // Function to change filter
-  const handleFilterChange = (filter) => {
-    setActiveFilter(filter);
-  };
-
-  // Function to determine if a project should be shown based on the filter
-  const shouldDisplay = (filterClass) => {
-    return activeFilter === '*' || activeFilter === filterClass;
-  };
-
-  // Listen for blog post open events
-  React.useEffect(() => {
-    const handleOpenBlogPost = (event) => {
-      setSelectedBlog(event.detail);
-    };
+  useEffect(() => {
+    // Get view count from localStorage or initialize
+    const storedViews = localStorage.getItem('profileViews');
+    const currentViews = storedViews ? parseInt(storedViews) : 0;
+    const newViews = currentViews + 1;
     
-    window.addEventListener('openBlogPost', handleOpenBlogPost);
-    
-    return () => {
-      window.removeEventListener('openBlogPost', handleOpenBlogPost);
-    };
+    // Update localStorage
+    localStorage.setItem('profileViews', newViews.toString());
+    setProfileViews(newViews);
   }, []);
     return (
         <Window {...props} minSize={WINDOW_MIN_SIZE}>
@@ -146,12 +183,6 @@ const Welcome = (props) => {
                       <a href="#services">Services</a>
                     </li>
                     <li>
-                      <a href="#portfolio">Portfolio</a>
-                    </li>
-                    <li>
-                      <a href="#blog">Blog</a>
-                    </li>
-                    <li>
                       <a href="#about">About</a>
                     </li>
                     <li>
@@ -176,14 +207,19 @@ const Welcome = (props) => {
                 <div className="column-1">
                   <h1 className="header-title">Sudhir Sharma</h1>
                   <div className="text">
-                    <p>Hello, I'm Sudhir, Software Developer.</p>
+                    <p>Hello, I'm Sudhir, AI/ML & Search Systems Engineer.</p>
                     <div className="small-desc">
-                      Specializing in scalable applications with Spring Boot, .NET, and PySpark. Skilled in mobile and web development using Flutter, ReactJS, and NodeJS. Proficient in data modeling and visualization with Power BI and SQL.
+                      Expert in building RAG pipelines, semantic search engines, vector databases (FAISS, ChromaDB), and scalable AI integrations using LangChain, OpenAI APIs. Backend specialist with Spring Boot, PySpark, and distributed systems. Competitive programmer with deep expertise in algorithms and data structures.
                     </div>
                   </div>
                   <a href="./img/12041500.pdf" target="_blank" className="btn">Download CV</a>
                 </div>
-                <div className="column-2 image">
+                <div className="column-2 image" style={{position: 'relative'}}>
+                  <ProfileViewCounter>
+                    <span className="view-icon">👁️</span>
+                    <span className="view-count">{profileViews.toLocaleString()}</span>
+                    <span className="view-label">Profile Views</span>
+                  </ProfileViewCounter>
                   <img src={require("./img/shapes/points2.png")} className="points points2" alt="points rawquesh" />
                   <img src={require("./img/Person.png")} className="img-element z-index" alt="main logo rawquesh" />
                 </div>
@@ -196,8 +232,7 @@ const Welcome = (props) => {
               <div className="section-header">
                 <h3 className="title" data-title="What I Do">Services</h3>
                 <p className="text">
-                  The services i can provide as a developer to your company or
-                  business.
+                  Specialized services in AI/ML systems, backend architecture, and algorithmic solutions for your business needs.
                 </p>
               </div>
               <div className="cards">
@@ -216,9 +251,9 @@ const Welcome = (props) => {
                 <div className="card" data-card="AI">
                   <div className="card-content z-index">
                     <img src={require("./img/services/AI.png")} className="icon" alt="ai development" />
-                    <h3 className="title-sm">AI &amp; Machine Learning</h3>
+                    <h3 className="title-sm">AI/ML & Search Systems</h3>
                     <p className="text">
-                      Skilled in developing AI-driven tools like IntervuPro.AI using LLMs, GPT, Langchain, and TensorFlow for intelligent automation.
+                      Building RAG pipelines, semantic search engines with vector databases (FAISS, ChromaDB), and AI integrations using LangChain, OpenAI APIs, and cloud-native deployments.
                     </p>
                     <a href="mailto:sudhirsharma@iitbhilai.ac.in" className="btn small">Hire me</a>
                   </div>
@@ -256,10 +291,9 @@ const Welcome = (props) => {
                   <div className="card" data-card="DB">
                     <div className="card-content z-index">
                       <img src={require("./img/services/database.png")} className="icon" alt="database Backend showcase rawquesh" />
-                      <h3 className="title-sm">Database/Backend</h3>
+                      <h3 className="title-sm">Backend & Distributed Systems</h3>
                       <p className="text">
-                        I can work with NodeJS and ExpressJS for creating REST-API,
-                        Firestore, MongoDB, and NoSQL for database
+                        Building scalable microservices and distributed systems with Spring Boot, PySpark, SQL, .NET. Expert in data pipelines, REST APIs, and cloud deployments.
                       </p>
                       <a href="mailto:sudhirsharma@iitbhilai.ac.in" className="btn small">Hire me</a>
                     </div>
@@ -323,232 +357,7 @@ const Welcome = (props) => {
             </div>
           </section>
 
-    <section className="portfolio section" id="portfolio">
-      <div className="background-bg">
-        <div className="overlay overlay-sm">
-          <img src={require("./img/shapes/half-circle.png")} className="shape half-circle1" alt="" />
-          <img src={require("./img/shapes/half-circle.png")} className="shape half-circle2" alt="" />
-          <img src={require("./img/shapes/square.png")} className="shape square" alt="" />
-          <img src={require("./img/shapes/wave.png")} className="shape wave" alt="" />
-          <img src={require("./img/shapes/circle.png")} className="shape circle" alt="" />
-          <img src={require("./img/shapes/triangle.png")} className="shape triangle" alt="" />
-          <img src={require("./img/shapes/x.png")} className="shape xshape" alt="" />
-        </div>
-      </div>
-      <div className="container">
-        <div className="section-header">
-          <h3 className="title" data-title="My works">Portfolio</h3>
-        </div>
-        <div className="section-body">
-          {/* Filter Buttons */}
-          <div className="filter">
-            <button className={`filter-btn ${activeFilter === '*' ? 'active' : ''}`} onClick={() => handleFilterChange('*')}>
-              All
-            </button>
-            <button className={`filter-btn ${activeFilter === 'python' ? 'active' : ''}`} onClick={() => handleFilterChange('python')}>
-              Python Projects
-            </button>
-            <button className={`filter-btn ${activeFilter === 'react' ? 'active' : ''}`} onClick={() => handleFilterChange('react')}>
-              Web Projects
-            </button>
-            <button className={`filter-btn ${activeFilter === 'llm' ? 'active' : ''}`} onClick={() => handleFilterChange('llm')}>
-              LLM Projects
-            </button>
-            <button className={`filter-btn ${activeFilter === 'ML' ? 'active' : ''}`} onClick={() => handleFilterChange('ML')}>
-              ML
-            </button>
-          </div>
-
-          {/* Projects Grid */}
-          <div className="grid">
-            {/* PythonCF Project */}
-            {shouldDisplay('python') && (
-              <a target="_blank" rel="noopener noreferrer" href="https://github.com/Sudhir878786/pythoncf">
-                <div className="grid-item python">
-                  <div className="gallery-image">
-                    <img src={require('./img/portfolio/pythoncff.jpg')} alt="PythonCF" />
-                    <div className="img-overlay">
-                      <div className="plus" />
-                      <div className="img-description">
-                        <h3>PythonCF</h3>
-                        <h5>View on GitHub</h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            )}
-
-            {/* IntervuPro.AI Project */}
-            {shouldDisplay('llm') && (
-              <a target="_blank" rel="noopener noreferrer" href="https://github.com/Sudhir878786/IntervuPro.AI">
-                <div className="grid-item llm">
-                  <div className="gallery-image">
-                    <img src={require('./img/portfolio/intervuepro.jpg')} alt="IntervuPro.AI"/>
-                    <div className="img-overlay">
-                      <div className="plus" />
-                      <div className="img-description">
-                        <h3>IntervuPro.AI</h3>
-                        <h5>View on GitHub</h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            )}
-
-            {/* Resume Ranker Project */}
-            {shouldDisplay('llm') && (
-              <a target="_blank" rel="noopener noreferrer" href="https://github.com/Sudhir878786/Resume_Ranker_LLM">
-                <div className="grid-item llm">
-                  <div className="gallery-image">
-                    <img src={require('./img/portfolio/resumerank.jpg')} alt="Resume Ranker" />
-                    <div className="img-overlay">
-                      <div className="plus" />
-                      <div className="img-description">
-                        <h3>Resume Ranker</h3>
-                        <h5>View on GitHub</h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            )}
-
-            {/* IIT Bhilai Lost and Found App */}
-            {shouldDisplay('react') && (
-              <a target="_blank" rel="noopener noreferrer" href="https://github.com/Sudhir878786/IIT-Bhilai-Lost-and-Found">
-                <div className="grid-item react">
-                  <div className="gallery-image">
-                    <img src={require('./img/portfolio/landf.jpg')} alt="IIT Bhilai Lost and Found" />
-                    <div className="img-overlay">
-                      <div className="plus" />
-                      <div className="img-description">
-                        <h3>IIT Bhilai Lost and Found</h3>
-                        <h5>View on GitHub</h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            )}
-
-            {/* Dynamic Circuit Quantum ML Project */}
-            {shouldDisplay('ML') && (
-              <a target="_blank" rel="noopener noreferrer" href="https://github.com/Sudhir878786/Dynamic-Circuit-Quantum-ML">
-                <div className="grid-item ML">
-                  <div className="gallery-image">
-                    <img src={require("./img/portfolio/quantumml.jpg")} alt="Dynamic Circuit Quantum ML" />
-                    <div className="img-overlay">
-                      <div className="plus" />
-                      <div className="img-description">
-                        <h3>Dynamic-Circuit-Quantum-ML</h3>
-                        <h5>View on GitHub</h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            )}
-
-            {/* Covid-19 Tweets Visualization Dashboard */}
-            {shouldDisplay('ML') && (
-              <a target="_blank" rel="noopener noreferrer" href="https://github.com/Sudhir878786/Covid-19-Tweets-Visualization-Dashboard-DS501">
-                <div className="grid-item ML">
-                  <div className="gallery-image">
-                    <img src={require("./img/portfolio/covid.jpg")} alt="Covid-19 Tweets Visualization Dashboard" />
-                    <div className="img-overlay">
-                      <div className="plus" />
-                      <div className="img-description">
-                        <h3>Covid-19 Tweets Visualization Dashboard</h3>
-                        <h5>View on GitHub</h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            )}
-
-            {/* Metamask Snap Project */}
-            {shouldDisplay('react') && (
-              <a target="_blank" rel="noopener noreferrer" href="https://github.com/Sudhir878786/MetaMask_Snap-1">
-                <div className="grid-item react">
-                  <div className="gallery-image">
-                    <img src={require("./img/portfolio/metamask.jpg")} alt="Metamask Snap" />
-                    <div className="img-overlay">
-                      <div className="plus" />
-                      <div className="img-description">
-                        <h3>Metamask Snap</h3>
-                        <h5>View Demo</h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            )}
-
-            {/* Bitcoin Scrapper Project */}
-            {shouldDisplay('python') && (
-              <a target="_blank" rel="noopener noreferrer" href="https://github.com/Sudhir878786/bitcoin-scrapper">
-                <div className="grid-item python">
-                  <div className="gallery-image">
-                    <img src={require("./img/portfolio/bitcoin.jpg")} alt="Bitcoin Scrapper" />
-                    <div className="img-overlay">
-                      <div className="plus" />
-                      <div className="img-description">
-                        <h3>Bitcoin Scrapper</h3>
-                        <h5>View Demo</h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            )}
-
-            {/* The Pixel Snappers Project */}
-            {shouldDisplay('react') && (
-              <a target="_blank" rel="noopener noreferrer" href="https://github.com/Sudhir878786/thepixelsnappers">
-                <div className="grid-item react">
-                  <div className="gallery-image">
-                    <img src={require("./img/portfolio/tps.png")} alt="The Pixel Snappers" />
-                    <div className="img-overlay">
-                      <div className="plus" />
-                      <div className="img-description">
-                        <h3>The Pixel Snappers</h3>
-                        <h5>View Demo</h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            )}
-
-            {/* Weather App Project */}
-            {shouldDisplay('react') && (
-              <a target="_blank" rel="noopener noreferrer" href="https://github.com/Sudhir878786/Weather_Web_App">
-                <div className="grid-item react">
-                  <div className="gallery-image">
-                    <img src={require("./img/portfolio/weathre.png")} alt="Weather App" />
-                    <div className="img-overlay">
-                      <div className="plus" />
-                      <div className="img-description">
-                        <h3>Weather App</h3>
-                        <h5>View Demo</h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            )}
-          </div>
-        </div>
-      </div>
-    </section>
-          
-          {/* Blog Section */}
-          <BlogSection />
-          
-         {/* About section */}
+          {/* About section */}
       <section className="about section" id="about">
         <div className="container">
           <div className="section-header">
@@ -558,7 +367,7 @@ const Welcome = (props) => {
             <div className="column-1">
               <h3 className="title-sm">Hello, I'm Sudhir</h3>
               <p className="text">
-                A Software Development Engineer with expertise in building scalable applications and solutions. I specialize in Java Spring Boot, Python, PySpark, SQL, and Power BI. I have experience in backend development, data analytics, and building efficient cloud-deployed applications.
+                An AI/ML & Search Systems Engineer specializing in three core areas: building intelligent search systems with RAG pipelines and vector databases, architecting scalable backend and distributed systems, and solving complex algorithmic challenges through competitive programming. Expert in LangChain, OpenAI APIs, Spring Boot, PySpark, and data structures.
               </p>
               <div className="skills">
                 <div className="skill">
@@ -813,9 +622,6 @@ const Welcome = (props) => {
                     <a href="#services">Services</a>
                   </li>
                   <li>
-                    <a href="#portfolio">Portfolio</a>
-                  </li>
-                  <li>
                     <a href="#about">About</a>
                   </li>
                   <li>
@@ -884,14 +690,6 @@ const Welcome = (props) => {
             </div>
           </div>
         </footer>
-      
-      {/* Blog Post Modal */}
-      {selectedBlog && (
-        <BlogPost 
-          blog={selectedBlog} 
-          onClose={() => setSelectedBlog(null)} 
-        />
-      )}
       
         </WelcomeWrapper>
         </Window>
