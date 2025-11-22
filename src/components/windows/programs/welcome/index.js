@@ -21,10 +21,10 @@ const ProfileViewCounter = styled.div`
   background: linear-gradient(135deg, rgba(78, 201, 176, 0.2), rgba(61, 165, 138, 0.3));
   border: 1px solid rgba(78, 201, 176, 0.4);
   border-radius: 20px;
-  padding: 8px 20px;
+  padding: 8px 15px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 15px rgba(78, 201, 176, 0.2);
   animation: ${gridAnimation} 2s ease-in-out infinite alternate;
@@ -34,34 +34,21 @@ const ProfileViewCounter = styled.div`
     font-size: 18px;
   }
   
-  .view-count {
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 16px;
-    text-shadow: 0 0 10px rgba(78, 201, 176, 0.5);
-  }
-  
-  .view-label {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 12px;
-    letter-spacing: 0.5px;
+  img {
+    display: block;
   }
   
   @media (max-width: 768px) {
     top: -35px;
     right: 10px;
-    padding: 6px 15px;
+    padding: 6px 12px;
     
     .view-icon {
       font-size: 14px;
     }
     
-    .view-count {
-      font-size: 14px;
-    }
-    
-    .view-label {
-      font-size: 10px;
+    img {
+      height: 16px !important;
     }
   }
 `;
@@ -117,18 +104,6 @@ const WINDOW_MIN_SIZE =
     "ontouchstart" in window ? WINDOW_MOBILE_MIN_SIZE : undefined;
 
 const Welcome = (props) => {
-  const [profileViews, setProfileViews] = useState(0);
-
-  useEffect(() => {
-    // Get view count from localStorage or initialize
-    const storedViews = localStorage.getItem('profileViews');
-    const currentViews = storedViews ? parseInt(storedViews) : 0;
-    const newViews = currentViews + 1;
-    
-    // Update localStorage
-    localStorage.setItem('profileViews', newViews.toString());
-    setProfileViews(newViews);
-  }, []);
     return (
         <Window {...props} minSize={WINDOW_MIN_SIZE}>
            <WelcomeWrapper>
@@ -217,8 +192,11 @@ const Welcome = (props) => {
                 <div className="column-2 image" style={{position: 'relative'}}>
                   <ProfileViewCounter>
                     <span className="view-icon">👁️</span>
-                    <span className="view-count">{profileViews.toLocaleString()}</span>
-                    <span className="view-label">Profile Views</span>
+                    <img 
+                      src="https://komarev.com/ghpvc/?username=Sudhir878786&label=Profile%20views&color=6805D3&style=flat" 
+                      alt="Profile Views" 
+                      style={{height: '20px', marginLeft: '5px'}}
+                    />
                   </ProfileViewCounter>
                   <img src={require("./img/shapes/points2.png")} className="points points2" alt="points rawquesh" />
                   <img src={require("./img/Person.png")} className="img-element z-index" alt="main logo rawquesh" />
