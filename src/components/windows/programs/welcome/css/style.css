@@ -403,6 +403,11 @@ nav.open .links {
 
 .header-content .image .img-element {
   max-width: 750px;
+  mix-blend-mode: lighten;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+  background: transparent;
+  border: none;
+  transform: translateY(-86px);
 }
 
 header .points1 {
@@ -1517,6 +1522,10 @@ header .circle {
 
   .header-content .image .img-element {
     max-width: 500px;
+    mix-blend-mode: lighten;
+    filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.5));
+    background: transparent !important;
+    border: none !important;
   }
 
   nav .container {
