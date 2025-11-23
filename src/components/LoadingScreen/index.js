@@ -22,6 +22,13 @@ const Container3D = styled.div`
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
   z-index: 99999;
   animation: ${({ $isExiting }) => $isExiting ? fadeOut : 'none'} 1s ease-out forwards;
+  overflow: hidden;
+  
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+  }
 `;
 
 const ProgressBar = styled.div`
@@ -115,22 +122,22 @@ const FallingLetter = styled.span`
 // KALI LINUX TERMINAL LOADING BAR
 const LoadingBarContainer = styled.div`
   position: absolute;
-  bottom: 60px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   width: 90%;
   max-width: 600px;
   perspective: 1500px;
   z-index: 10;
   
   @media (max-width: 768px) {
-    bottom: 40px;
     width: 85%;
+    max-width: 500px;
   }
   
   @media (max-width: 480px) {
-    bottom: 30px;
     width: 90%;
+    max-width: 350px;
     perspective: 1000px;
   }
 `;
@@ -250,8 +257,6 @@ function FallingLetterBox({ char, index, onLand }) {
   const startX = -6 + index * 1;
   const groundY = -2;
 
-  console.log(`FallingLetterBox ${index} created at x=${startX}`);
-
   useFrame(() => {
     if (!meshRef.current || hasLanded) return;
 
@@ -266,7 +271,6 @@ function FallingLetterBox({ char, index, onLand }) {
 
     // Check if landed
     if (meshRef.current.position.y <= groundY && !hasLanded) {
-      console.log(`Block ${index} landed!`);
       meshRef.current.position.y = groundY;
       meshRef.current.rotation.set(0, 0, 0);
       setHasLanded(true);
@@ -325,21 +329,16 @@ function Scene({ onAllLanded, onLetterLand }) {
   const [landedCount, setLandedCount] = useState(0);
   const audioContextRef = useRef(null);
 
-  console.log('Scene component rendering, letters:', letters.length);
-
   useEffect(() => {
-    console.log('Scene mounted, initializing audio...');
     // Initialize Web Audio API
     try {
       audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
-      console.log('Audio context created successfully');
     } catch (e) {
-      console.warn('Web Audio API not supported', e);
+      // Web Audio API not supported
     }
   }, []);
 
   const playBlockSound = (index) => {
-    console.log('playBlockSound called for index:', index);
     if (!audioContextRef.current) return;
 
     try {
@@ -361,7 +360,7 @@ function Scene({ onAllLanded, onLetterLand }) {
       oscillator.start(ctx.currentTime);
       oscillator.stop(ctx.currentTime + 0.2);
     } catch (e) {
-      console.warn('Sound playback failed', e);
+      // Sound playback failed
     }
 
     // Notify that letter has landed
@@ -371,9 +370,7 @@ function Scene({ onAllLanded, onLetterLand }) {
 
     setLandedCount(prev => {
       const newCount = prev + 1;
-      console.log(`Block landed! Count: ${newCount}/${letters.length}`);
       if (newCount === letters.length && onAllLanded) {
-        console.log('All blocks landed, calling onAllLanded in 1s');
         setTimeout(onAllLanded, 1000);
       }
       return newCount;
@@ -403,7 +400,6 @@ function Scene({ onAllLanded, onLetterLand }) {
       <Ground />
 
       {letters.map((char, index) => {
-        console.log(`Rendering FallingLetterBox ${index}: ${char}`);
         return (
           <FallingLetterBox
             key={index}
@@ -423,16 +419,9 @@ function Scene({ onAllLanded, onLetterLand }) {
 const LoadingScreen = ({ onLoadComplete }) => {
   const [progress, setProgress] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
-  const [allLanded, setAllLanded] = useState(false);
-  const [landedLetters, setLandedLetters] = useState([]);
-  
-  const name = "SUDHIR SHARMA";
-  const letters = name.split('');
-
-  console.log('LoadingScreen render:', { progress, allLanded, isExiting });
+  const totalModules = 13;
 
   useEffect(() => {
-    console.log('LoadingScreen mounted');
     const interval = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) {
@@ -442,42 +431,30 @@ const LoadingScreen = ({ onLoadComplete }) => {
         // Faster progress - increase by 3-6% each tick
         const increment = 3 + Math.random() * 3;
         const newProgress = Math.min(100, prev + increment);
-        console.log('Progress:', newProgress);
         return newProgress;
       });
     }, 150);
 
     return () => {
-      console.log('LoadingScreen unmounted');
       clearInterval(interval);
     };
   }, []);
 
   useEffect(() => {
-    if (allLanded && progress >= 100) {
-      console.log('All conditions met, starting exit sequence');
+    if (progress >= 100) {
       setTimeout(() => {
         setIsExiting(true);
         setTimeout(() => {
           if (onLoadComplete) {
-            console.log('Calling onLoadComplete');
             onLoadComplete();
           }
         }, 800);
       }, 500);
     }
-  }, [allLanded, progress, onLoadComplete]);
+  }, [progress, onLoadComplete]);
 
-  const handleLetterLand = (index) => {
-    setLandedLetters(prev => {
-      if (!prev.includes(index)) {
-        return [...prev, index];
-      }
-      return prev;
-    });
-  };
-
-  console.log('Rendering Canvas...');
+  // Calculate modules based on progress
+  const modulesLoaded = Math.floor((progress / 100) * totalModules);
 
   return (
     <Container3D $isExiting={isExiting}>
@@ -485,25 +462,13 @@ const LoadingScreen = ({ onLoadComplete }) => {
         shadows
         camera={{ position: [0, 2, 12], fov: 50 }}
         gl={{ antialias: true, alpha: false }}
-        style={{ background: 'transparent' }}
-        onCreated={() => console.log('Canvas created!')}
+        style={{ background: 'transparent', display: 'none' }}
       >
         <Scene 
-          onAllLanded={() => {
-            console.log('All blocks landed!');
-            setAllLanded(true);
-          }}
-          onLetterLand={handleLetterLand}
+          onAllLanded={() => {}}
+          onLetterLand={() => {}}
         />
       </Canvas>
-
-      <LoadingText>
-        {letters.map((char, index) => (
-          <FallingLetter key={index} $hasLanded={landedLetters.includes(index)}>
-            {char === ' ' ? '\u00A0' : char}
-          </FallingLetter>
-        ))}
-      </LoadingText>
 
       <LoadingBarContainer>
         <KaliTerminalBox>
@@ -515,7 +480,7 @@ const LoadingScreen = ({ onLoadComplete }) => {
             <span className="prompt">#</span> ./load_portfolio.sh
           </TerminalLine>
           <StatusLine>
-            Loading... <span className="percent">{Math.round(progress)}%</span> [{landedLetters.length}/{letters.length} modules]
+            Loading... <span className="percent">{Math.round(progress)}%</span> [{modulesLoaded}/{totalModules} modules]
           </StatusLine>
         </KaliTerminalBox>
       </LoadingBarContainer>
