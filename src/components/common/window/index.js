@@ -26,6 +26,11 @@ const StyledWindowContainer = styled.div`
     height: 100%;
     width: 100%;
     z-index: ${({ focusLevel }) => focusLevel};
+    filter: ${({ isFocused }) => 
+        isFocused 
+            ? `drop-shadow(0 0 25px rgba(0, 255, 65, 0.3)) drop-shadow(0 10px 40px rgba(0, 0, 0, 0.7))` 
+            : `drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5))`};
+    transition: filter 0.3s ease;
 `;
 
 const StyledWindow = styled.div`
@@ -33,6 +38,10 @@ const StyledWindow = styled.div`
     flex-direction: column;
     height: 100%;
     width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 100%);
+    backdrop-filter: blur(10px);
 `;
 
 const MIN_SIZE = {
@@ -357,7 +366,7 @@ const Window = forwardRef((props, ref) => {
             preventOverflow={true}
             overflowOffset={overflowOffset}
         >
-            <StyledWindowContainer onMouseDown={handleWindowMouseDown}>
+            <StyledWindowContainer onMouseDown={handleWindowMouseDown} isFocused={isFocused}>
                 <Resizer
                     size={size}
                     minSize={minSize}

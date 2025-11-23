@@ -1,4 +1,11 @@
 // Professional Technical Blogs
+
+// Use actual project images as blog covers
+import syncanoImg from '../../../../assets/images/projects/syncano.svg';
+import screenwiseImg from '../../../../assets/images/projects/screenwise.svg';
+import maqsoftwareImg from '../../../../assets/images/projects/maqsoftware.svg';
+import canonforcesImg from '../../../../assets/images/projects/canonforces.svg';
+
 const blogsData = [
   {
     id: 1,
@@ -9,7 +16,7 @@ const blogsData = [
     readTime: "8 min read",
     date: "November 2024",
     excerpt: "Diving deep into designing and implementing production-grade microservices using Spring Boot, exploring patterns like Circuit Breaker, API Gateway, and service discovery.",
-    coverImage: require("./img/portfolio/image.png"),
+    coverImage: maqsoftwareImg,
     content: `
 When building enterprise-grade applications, Spring Boot has become the de facto framework for Java microservices. After working on scalable data ingestion systems at MAQ Software, I've learned that the real challenge isn't just writing code—it's architecting systems that can handle failures gracefully.
 
@@ -178,7 +185,7 @@ What patterns have you found most valuable in your microservices architecture?
     readTime: "10 min read",
     date: "October 2024",
     excerpt: "Real-world optimization techniques that reduced our data pipeline execution time by 94%, including partitioning strategies, broadcast joins, and Catalyst optimizer insights.",
-    coverImage: require("./img/portfolio/image.png"),
+    coverImage: syncanoImg,
     content: `
 When you're processing terabytes of data, every optimization matters. During my work on data pipelines at MAQ Software, I transformed a sluggish 4-hour batch job into a 15-minute operation. Here's how.
 
@@ -396,7 +403,7 @@ What's your biggest PySpark performance challenge? Share in the comments!
     readTime: "12 min read",
     date: "September 2024",
     excerpt: "Building IntervuPro.AI taught me that integrating LLMs into production requires more than API calls. Here's a deep dive into chains, memory, and retrieval strategies.",
-    coverImage: require("./img/portfolio/intervuepro.jpg"),
+    coverImage: screenwiseImg,
     content: `
 Building IntervuPro.AI—an AI-powered interview preparation platform—taught me that production LLM applications require sophisticated orchestration beyond simple API calls. Enter LangChain.
 
@@ -752,7 +759,7 @@ What LLM application are you building? Share your challenges!
     readTime: "9 min read",
     date: "August 2024",
     excerpt: "Building a production semantic search system at Cloudcraftz.AI using ChromaDB and OpenAI embeddings, achieving 85% accuracy improvement over keyword search.",
-    coverImage: require("./img/portfolio/image.png"),
+    coverImage: canonforcesImg,
     content: `
 At Cloudcraftz.AI, we built a semantic search system that understands intent, not just keywords. Here's how we went beyond traditional search to achieve 85% better relevance.
 
@@ -1127,7 +1134,7 @@ What's your biggest challenge with search? Let me know!
     readTime: "10 min read",
     date: "July 2024",
     excerpt: "Practical React optimization techniques including code splitting, memoization, virtualization, and bundle analysis that reduced our portfolio load time by 90%.",
-    coverImage: require("./img/portfolio/tps.png"),
+    coverImage: maqsoftwareImg,
     content: `
 React makes building UIs easy, but performance requires deliberate optimization. Here's how I transformed my portfolio from a sluggish 3-second load to a snappy 300ms experience.
 
@@ -1536,7 +1543,7 @@ What's your biggest React performance bottleneck?
     readTime: "11 min read",
     date: "June 2024",
     excerpt: "Architecting and implementing a real-time data pipeline that processes 1M+ events per second using Kafka and Spark Streaming, with exactly-once semantics.",
-    coverImage: require("./img/portfolio/image.png"),
+    coverImage: syncanoImg,
     content: `
 Real-time data processing powers modern applications—from fraud detection to live dashboards. Here's how we built a production pipeline processing over 1 million events per second with guaranteed delivery semantics.
 

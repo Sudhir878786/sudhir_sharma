@@ -10,22 +10,55 @@ const StyledWindowHeader = styled.div`
     height: ${WINDOW_HEADER_HEIGHT}px;
     width: 100%;
     --generic-bar-color: ${({ theme }) =>
-        theme.darkTheme ? `#424242` : `#cccccc`};
+        theme.darkTheme ? `#0a0a0a` : `#1a1a1a`};
 
-    background-color: ${({ theme, isFocused }) =>
+    background: ${({ theme, isFocused }) =>
         isFocused && theme.barsAndBorders
-            ? theme.windowsColor
-            : css`var(--generic-bar-color)`};
+            ? `linear-gradient(135deg, ${theme.windowsColor}dd, ${theme.windowsColor}88)`
+            : css`linear-gradient(135deg, #0a0a0a, #1a1a1a)`};
+    
+    border-bottom: ${({ isFocused }) =>
+        isFocused
+            ? `2px solid #00ff41`
+            : `2px solid #333333`};
+    
+    box-shadow: ${({ isFocused }) =>
+        isFocused
+            ? `0 2px 15px rgba(0, 255, 65, 0.3), inset 0 1px 0 rgba(0, 255, 65, 0.1)`
+            : `0 2px 8px rgba(0, 0, 0, 0.4)`};
 
     display: flex;
     justify-content: flex-end;
     user-select: none;
+    position: relative;
+    z-index: 1000;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: ${({ isFocused }) =>
+            isFocused
+                ? `radial-gradient(circle, #00ff41, #00cc33)`
+                : `#555555`};
+        box-shadow: ${({ isFocused }) =>
+            isFocused
+                ? `0 0 8px #00ff41, 0 0 12px rgba(0, 255, 65, 0.5)`
+                : `none`};
+    }
 `;
 
 const StyledWindowOptions = styled.div`
     height: 100%;
     display: flex;
     align-items: flex-start;
+    position: relative;
+    z-index: 1001;
 `;
 
 const StyledWindowOption = styled.button`
@@ -34,22 +67,35 @@ const StyledWindowOption = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background-color 0.2s;
+    transition: all 0.2s ease;
     font-size: ${({ fontSize }) => fontSize};
-    color: #ffffff;
+    color: ${({ isClose }) => isClose ? '#ff073a' : '#00ff41'};
     border: none;
     background-color: transparent;
     -webkit-tap-highlight-color: transparent;
-    cursor: default;
+    cursor: pointer;
+    position: relative;
+    font-weight: 600;
+    z-index: 1002;
 
     :hover {
         background-color: ${({ hoverBackground }) => hoverBackground};
+        color: ${({ isClose }) => isClose ? '#ffffff' : '#00ff41'};
+        transform: scale(1.1);
+        box-shadow: ${({ isClose }) => 
+            isClose 
+                ? `0 0 15px rgba(255, 7, 58, 0.5)` 
+                : `0 0 15px rgba(0, 255, 65, 0.3)`};
     }
 
     &:focus {
         outline: none;
         border: none;
         background-color: ${({ hoverBackground }) => hoverBackground};
+    }
+    
+    &:active {
+        transform: scale(0.95);
     }
 `;
 
@@ -58,8 +104,8 @@ const WindowHeader = memo(
         const themeContext = useContext(ThemeContext);
 
         const hoverBackgroundOption = !themeContext.barsAndBorders
-            ? `${themeContext.windowsColor}80`
-            : "#ffffff50";
+            ? `${themeContext.windowsColor}40`
+            : "rgba(0, 255, 65, 0.15)";
 
         const { onMinimize, onMaximize, onClose, isFocused } = props;
         return (
@@ -73,17 +119,19 @@ const WindowHeader = memo(
                         className="no-drag"
                         id="minimize-window"
                         onClick={onMinimize}
-                        fontSize="35px"
+                        fontSize="28px"
                         hoverBackground={hoverBackgroundOption}
+                        isClose={false}
                     >
-                        -
+                        −
                     </StyledWindowOption>
                     <StyledWindowOption
                         className="no-drag"
                         id="miximize-window"
                         onClick={onMaximize}
-                        fontSize="14px"
+                        fontSize="13px"
                         hoverBackground={hoverBackgroundOption}
+                        isClose={false}
                     >
                         <FontAwesomeIcon
                             icon={faSquare}
@@ -95,7 +143,8 @@ const WindowHeader = memo(
                         id="close-window"
                         onClick={onClose}
                         fontSize="16px"
-                        hoverBackground="#ff000080"
+                        hoverBackground="rgba(255, 7, 58, 0.25)"
+                        isClose={true}
                     >
                         <FontAwesomeIcon
                             icon={faTimes}

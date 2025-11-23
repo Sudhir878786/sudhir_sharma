@@ -1,6 +1,6 @@
 import React from "react";
 import Window from "../../../common/window";
-import BlogSection from "./BlogSection";
+import CinematicBlog from "../../../CinematicBlog";
 
 function Blog(props) {
     return (
@@ -13,7 +13,7 @@ function Blog(props) {
             minHeight="400px"
             minWidth="600px"
         >
-            <BlogSection />
+            <CinematicBlog />
         </Window>
     );
 }
