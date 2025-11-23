@@ -58,6 +58,20 @@ const LoadingText = styled.div`
   gap: 15px;
   z-index: 10;
   pointer-events: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 90%;
+  
+  @media (max-width: 768px) {
+    gap: 8px;
+    top: 45%;
+  }
+  
+  @media (max-width: 480px) {
+    gap: 5px;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const FallingLetter = styled.span`
@@ -74,6 +88,15 @@ const FallingLetter = styled.span`
     0 0 60px rgba(220, 220, 170, ${props => props.$hasLanded ? 0.4 : 0});
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   animation: ${props => props.$hasLanded ? 'glow 2s ease-in-out infinite' : 'none'};
+
+  @media (max-width: 768px) {
+    font-size: 36px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 24px;
+    letter-spacing: 0.03em;
+  }
 
   @keyframes glow {
     0%, 100% { text-shadow: 
@@ -95,9 +118,21 @@ const LoadingBarContainer = styled.div`
   bottom: 60px;
   left: 50%;
   transform: translateX(-50%);
-  width: 600px;
+  width: 90%;
+  max-width: 600px;
   perspective: 1500px;
   z-index: 10;
+  
+  @media (max-width: 768px) {
+    bottom: 40px;
+    width: 85%;
+  }
+  
+  @media (max-width: 480px) {
+    bottom: 30px;
+    width: 90%;
+    perspective: 1000px;
+  }
 `;
 
 const KaliTerminalBox = styled.div`
@@ -111,6 +146,17 @@ const KaliTerminalBox = styled.div`
     0 20px 50px rgba(0, 0, 0, 0.9),
     0 0 30px rgba(0, 255, 65, 0.2);
   font-family: 'Courier New', monospace;
+  
+  @media (max-width: 768px) {
+    padding: 12px;
+    transform: rotateX(5deg) translateZ(15px);
+  }
+  
+  @media (max-width: 480px) {
+    padding: 10px;
+    transform: rotateX(3deg) translateZ(10px);
+    border-width: 1px;
+  }
 `;
 
 const TerminalLine = styled.div`
@@ -118,6 +164,17 @@ const TerminalLine = styled.div`
   font-size: 13px;
   margin-bottom: 8px;
   text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+  word-wrap: break-word;
+  
+  @media (max-width: 768px) {
+    font-size: 11px;
+    margin-bottom: 6px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 9px;
+    margin-bottom: 5px;
+  }
   
   .user {
     color: #00ff41;
@@ -162,6 +219,17 @@ const StatusLine = styled.div`
   font-size: 12px;
   margin-top: 8px;
   text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+  word-wrap: break-word;
+  
+  @media (max-width: 768px) {
+    font-size: 10px;
+    margin-top: 6px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 9px;
+    margin-top: 5px;
+  }
   
   .percent {
     color: #fff;

@@ -259,9 +259,18 @@ const BlogsGrid = styled.div`
   position: relative;
   z-index: 2;
 
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
+  }
+
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+  
+  @media (max-width: 480px) {
+    gap: 30px;
   }
 `;
 
@@ -275,6 +284,16 @@ const PosterCard = styled.div`
   animation: ${posterReveal} 1.2s cubic-bezier(0.16, 1, 0.3, 1) backwards;
   animation-delay: ${props => props.delay || '0s'};
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  @media (max-width: 768px) {
+    aspect-ratio: 16/9;
+    border-radius: 6px;
+  }
+  
+  @media (max-width: 480px) {
+    aspect-ratio: 4/3;
+    border-radius: 4px;
+  }
   
   &:hover {
     transform: scale(1.05) translateY(-10px);
@@ -291,6 +310,12 @@ const PosterCard = styled.div`
 
     &::after {
       opacity: 1;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    &:hover {
+      transform: scale(1.02) translateY(-5px);
     }
   }
 
@@ -349,6 +374,20 @@ const PosterOverlay = styled.div`
   overflow-y: auto;
   max-height: 100%;
   
+  @media (max-width: 768px) {
+    padding: 20px;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.98) 0%,
+      rgba(0, 0, 0, 0.8) 50%,
+      transparent 80%
+    );
+  }
+  
+  @media (max-width: 480px) {
+    padding: 15px;
+  }
+  
   &::-webkit-scrollbar {
     width: 3px;
   }
@@ -380,6 +419,20 @@ const CategoryBadge = styled.div`
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease;
+  
+  @media (max-width: 768px) {
+    top: 15px;
+    right: 15px;
+    padding: 6px 12px;
+    font-size: 9px;
+  }
+  
+  @media (max-width: 480px) {
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    font-size: 8px;
+  }
   
   ${PosterCard}:hover & {
     transform: scale(1.1);
@@ -443,6 +496,18 @@ const PosterDescription = styled.p`
   transform: translateY(20px);
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
   
+  @media (max-width: 768px) {
+    opacity: 1;
+    transform: translateY(0);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+  
   ${PosterCard}:hover & {
     opacity: 1;
     transform: translateY(0);
@@ -457,6 +522,18 @@ const TagsContainer = styled.div`
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+  
+  @media (max-width: 768px) {
+    opacity: 1;
+    transform: translateY(0);
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+  
+  @media (max-width: 480px) {
+    gap: 4px;
+    margin-bottom: 8px;
+  }
   
   ${PosterCard}:hover & {
     opacity: 1;
@@ -477,6 +554,16 @@ const Tag = styled.span`
   font-family: 'Segoe UI', sans-serif;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
+  
+  @media (max-width: 768px) {
+    padding: 3px 8px;
+    font-size: 9px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 2px 6px;
+    font-size: 8px;
+  }
   
   &:hover {
     background: rgba(78, 201, 176, 0.3);
