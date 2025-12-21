@@ -89,22 +89,6 @@ const particleFloat = keyframes`
   }
 `;
 
-// ========== MAIN CONTAINER ==========
-const CinematicContainer = styled.div`
-  min-height: 100vh;
-  width: 100%;
-  background: #0a0a0a;
-  position: relative;
-  overflow: hidden;
-  padding: 80px 40px;
-  box-sizing: border-box;
-  animation: ${trailerFadeIn} 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-
-  @media (max-width: 768px) {
-    padding: 40px 20px;
-  }
-`;
-
 // ========== ATMOSPHERIC EFFECTS ==========
 const FogLayer = styled.div`
   position: absolute;
@@ -199,7 +183,108 @@ const Subtitle = styled.p`
   font-family: 'Segoe UI', sans-serif;
 `;
 
-// ========== PROJECT GRID ==========
+// ========== CINEMATIC SECTION ==========
+const CinematicSection = styled.section`
+  min-height: 100vh;
+  width: 100%;
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 40px 0;
+  }
+`;
+
+const CinematicContainer = styled.div`
+  max-width: 98rem;
+  padding: 0 4rem;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+  
+  @media (max-width: 768px) {
+    padding: 0 2rem;
+  }
+`;
+
+const CinematicTitle = styled.h2`
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: center;
+  margin: 0 0 60px 0;
+  font-family: Georgia, serif;
+  position: relative;
+  
+  &::before {
+    content: attr(data-title);
+    display: block;
+    font-size: 1rem;
+    color: #007acc;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    font-weight: 400;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 40px;
+  }
+`;
+
+// ========== AUTO-SCROLL ANIMATION ==========
+const autoScroll = keyframes`
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-400px * 14));
+  }
+`;
+
+// ========== PROJECT SLIDER ==========
+const ProjectsSliderWrapper = styled.div`
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  padding: 20px 0 40px;
+  
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  &::before {
+    left: 0;
+    background: linear-gradient(to right, #ffffff, transparent);
+  }
+  
+  &::after {
+    right: 0;
+    background: linear-gradient(to left, #ffffff, transparent);
+  }
+`;
+
+const ProjectsSlider = styled.div`
+  display: flex;
+  gap: 30px;
+  animation: ${autoScroll} 60s linear infinite;
+  will-change: transform;
+  
+  &:hover {
+    animation-play-state: paused;
+  }
+`;
+
 const ProjectsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -218,21 +303,31 @@ const ProjectsGrid = styled.div`
 // ========== MOVIE POSTER CARD ==========
 const PosterCard = styled.div`
   position: relative;
-  aspect-ratio: 2/3;
-  border-radius: 8px;
+  min-width: 370px;
+  height: 500px;
+  flex-shrink: 0;
+  border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
   animation: ${posterReveal} 1.2s cubic-bezier(0.16, 1, 0.3, 1) backwards;
   animation-delay: ${props => props.delay || '0s'};
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+  perspective: 1500px;
+  background: #fff;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  will-change: transform;
   
   &:hover {
-    transform: scale(1.05) translateY(-10px);
+    transform: translateY(-20px) scale(1.05) rotateY(5deg) rotateX(3deg);
+    box-shadow: 
+      0 40px 80px rgba(0, 122, 204, 0.2),
+      0 0 0 2px rgba(0, 122, 204, 0.15);
     z-index: 10;
 
     img {
-      transform: scale(1.15);
-      filter: brightness(1.2) contrast(1.1);
+      transform: scale(1.1);
+      filter: brightness(1.1) contrast(1.05);
     }
 
     &::before {
@@ -755,30 +850,25 @@ const ProjectCard = ({ project, index }) => {
 
 // ========== MAIN COMPONENT ==========
 const CinematicPortfolio = () => {
+  // Duplicate projects for infinite scroll effect
+  const duplicatedProjects = [...projects, ...projects];
+  
   return (
-    <CinematicContainer>
-      {/* Atmospheric Effects */}
-      <FogLayer top="10%" left="5%" duration="35s" />
-      <FogLayer top="60%" left="70%" duration="45s" />
-      <FogLayer top="40%" left="40%" duration="40s" />
-      
-      <VolumetricLight left="20%" duration="20s" />
-      <VolumetricLight left="60%" duration="28s" />
-      <VolumetricLight left="80%" duration="24s" />
-      
-      {/* Section Header */}
-      <SectionHeader>
-        <MainTitle>FEATURED WORKS</MainTitle>
-        <Subtitle>Projects</Subtitle>
-      </SectionHeader>
-      
-      {/* Projects Grid */}
-      <ProjectsGrid>
-        {projects.map((project, index) => (
-          <ProjectCard key={index} project={project} index={index} />
-        ))}
-      </ProjectsGrid>
-    </CinematicContainer>
+    <CinematicSection>
+      <CinematicContainer>
+        <CinematicTitle data-title="Featured Work">
+          Projects
+        </CinematicTitle>
+        
+        <ProjectsSliderWrapper>
+          <ProjectsSlider>
+            {duplicatedProjects.map((project, index) => (
+              <ProjectCard key={index} project={project} index={index % projects.length} />
+            ))}
+          </ProjectsSlider>
+        </ProjectsSliderWrapper>
+      </CinematicContainer>
+    </CinematicSection>
   );
 };
 

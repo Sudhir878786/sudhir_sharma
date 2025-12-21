@@ -41,10 +41,10 @@ td {
 }
 
 .sectionClass {
-  padding: 80px 0px 50px 0px;
+  padding: 60px 0px 40px 0px;
   position: relative;
   display: block;
-  background: linear-gradient(180deg, #1e1e1e 0%, #252526 100%);
+  background: transparent;
 }
 
 .row {
@@ -68,19 +68,21 @@ td {
 
 .sectiontitle h2 {
   font-size: 30px;
-  color: #4ec9b0;
+  color: #000;
   margin-bottom: 0px;
   padding-right: 10px;
   padding-left: 10px;
-  text-shadow: 0 0 15px rgba(78, 201, 176, 0.5);
+  text-shadow: none;
+  font-family: 'Georgia', serif;
+  font-weight: 600;
 }
 
 .headerLine {
   width: 160px;
   height: 2px;
   display: inline-block;
-  background: linear-gradient(90deg, #4ec9b0, #3da58a);
-  box-shadow: 0 0 10px rgba(78, 201, 176, 0.5);
+  background: #000;
+  box-shadow: none;
 }
 
 .fullWidth {
@@ -105,7 +107,7 @@ td {
 }
 
 .cbp_tmtimeline {
-  margin: 60px 30px 0 0;
+  margin: 50px 30px 0 0;
   padding: 0;
   list-style: none;
   position: relative;
@@ -116,11 +118,11 @@ td {
   position: absolute;
   top: 3%;
   bottom: 0;
-  width: 10px;
-  background: linear-gradient(180deg, #4ec9b0 0%, #3da58a 100%);
+  width: 3px;
+  background: linear-gradient(180deg, #e0e0e0 0%, #f5f5f5 100%);
   left: 13%;
   height: 100%;
-  box-shadow: 0 0 20px rgba(78, 201, 176, 0.5);
+  box-shadow: none;
 }
 
 .cbp_tmtimeline li:last-child:before {
@@ -155,45 +157,52 @@ td {
 
 .cbp_tmtimeline > li .cbp_tmlabel {
   margin: 0 0 15px 25%;
-  background: linear-gradient(145deg, #252526, #2d2d30);
-  color: #d4d4d4;
-  padding: 30px;
-  font-size: 1.2em;
+  background: #ffffff;
+  color: #555;
+  padding: 35px;
+  font-size: 1em;
   font-weight: 300;
-  line-height: 1.4;
-  font-family: 'Open Sans';
+  line-height: 1.6;
+  font-family: 'Georgia', serif;
   position: relative;
-  border-radius: 5px;
+  border-radius: 12px;
   min-height: 150px;
-  border: 1px solid rgba(78, 201, 176, 0.3);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+  border: 1.5px solid #e5e5e5;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.cbp_tmtimeline > li .cbp_tmlabel:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  border-color: #d0d0d0;
 }
 
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel {
-  background: linear-gradient(145deg, #2d2d30, #252526);
+  background: transparent;
 }
 
 .cbp_tmtimeline > li .cbp_tmlabel h3 {
   margin-top: 0px;
-  color: white;
-  font-size: 20px;
-  margin-bottom: 5px;
-  padding: 0 0 10px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  font-family: 'Open Sans', sans-serif;
-  font-weight: bold;
+  color: #000;
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+  padding: 0 0 12px 0;
+  border-bottom: 1.5px solid #e5e5e5;
+  font-family: 'Georgia', serif;
+  font-weight: 600;
+  letter-spacing: -0.3px;
 }
 
 .cbp_tmtimeline > li .cbp_tmlabel h4 {
-  opacity: 0.7;
-  color: rgba(255, 255, 255, 1);
+  color: #007acc;
   letter-spacing: 0px;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 18px;
-  line-height: 1.2em;
-  font-weight: 600;
+  font-family: 'Georgia', serif;
+  font-size: 1rem;
+  line-height: 1.4em;
+  font-weight: 500;
   padding: 0;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
   margin: 0;
   text-align: left;
 }
@@ -211,18 +220,19 @@ td {
   width: 0;
   position: absolute;
   pointer-events: none;
-  border-right-color: #252526;
-  border-width: 10px;
+  border-right-color: #ffffff;
+  border-width: 12px;
   top: 70px;
+  filter: drop-shadow(-2px 0 1px rgba(0, 0, 0, 0.05));
 }
 
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel:after {
-  border-right-color: #2d2d30;
+  border-right-color: #ffffff;
 }
 
 .cbp_tmtimeline > li .cbp_tmicon {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   top: 3%;
   speak: none;
   font-style: normal;
@@ -233,18 +243,25 @@ td {
   line-height: 40px;
   -webkit-font-smoothing: antialiased;
   position: absolute;
-  color: #151515;
-  background: linear-gradient(135deg, #4ec9b0, #3da58a);
+  color: #000;
+  background: #ffffff;
   border-radius: 50%;
   text-align: center;
   left: 8%;
   margin: 0 0 0 -25px;
-  border: 3px solid rgba(78, 201, 176, 0.5);
-  box-shadow: 0 0 30px rgba(78, 201, 176, 0.6), 0 0 50px rgba(78, 201, 176, 0.3);
+  border: 2.5px solid #e5e5e5;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.cbp_tmtimeline > li:hover .cbp_tmicon {
+  transform: scale(1.05);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+  border-color: #d0d0d0;
 }
 
 .cbp_tmtimeline li {
-  margin-bottom: 70px;
+  margin-bottom: 50px;
   position: relative;
 }
 
@@ -431,12 +448,12 @@ footer p strong {
 
 .authorWindow{
   width: 600px;
-  background: linear-gradient(135deg, #4ec9b0, #3da58a);
+  background: transparent;
   padding: 22px 20px 22px 20px;
   border-radius: 5px;
   overflow: hidden;
-  border: 1px solid rgba(78, 201, 176, 0.5);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(78, 201, 176, 0.3);
+  box-shadow: none;
 }
 
 .authorWindowWrapper{

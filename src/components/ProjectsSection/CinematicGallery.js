@@ -725,16 +725,7 @@ const CinematicProjectsGallery = ({ projects = [] }) => {
       
       <LightRay $top={20} $duration={20} $delay={0} />
       <LightRay $top={60} $duration={25} $delay={8} />
-      
-      <SectionHeader>
-        <SectionTitle data-text="FEATURED WORK">
-          FEATURED WORK
-        </SectionTitle>
-        <SectionSubtitle>
-          A Collection of My Best Productions
-        </SectionSubtitle>
-      </SectionHeader>
-      
+    
       <ProjectsGallery>
         {projects.map((project, index) => {
           const particles = generateParticles();

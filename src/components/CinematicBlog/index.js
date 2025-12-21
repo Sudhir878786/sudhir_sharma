@@ -95,7 +95,7 @@ const particleFloat = keyframes`
 const CinematicContainer = styled.div`
   min-height: 100vh;
   width: 100%;
-  background: #0a0a0a;
+  background: transparent; /* Changed from #0a0a0a to transparent */
   position: relative;
   overflow: hidden;
   padding: 80px 40px;
@@ -284,6 +284,8 @@ const PosterCard = styled.div`
   animation: ${posterReveal} 1.2s cubic-bezier(0.16, 1, 0.3, 1) backwards;
   animation-delay: ${props => props.delay || '0s'};
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+  will-change: transform;
   
   @media (max-width: 768px) {
     aspect-ratio: 16/9;
@@ -296,12 +298,13 @@ const PosterCard = styled.div`
   }
   
   &:hover {
-    transform: scale(1.05) translateY(-10px);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     z-index: 10;
 
     img {
-      transform: scale(1.15);
-      filter: brightness(1.2) contrast(1.1);
+      transform: scale(1.1);
+      filter: brightness(1.1) contrast(1.05);
     }
 
     &::before {

@@ -1,20 +1,19 @@
 import React, { createContext, useLayoutEffect, useRef, useState, useEffect } from "react";
 import { ThemeProvider } from "styled-components";
-import Windows from "./components/windows";
+import PortfolioLayout from "./components/PortfolioLayout";
 import { defaultTheme } from "./theme";
 import { loadThemeFromStorage, saveThemeToStorage } from "./util/themeHandler";
 import { mountGlobalEvents, unmountGlobalEvents } from "./util/eventsHandlers";
 import GlobalStyles from "./styles/GlobalStyles";
 import { addProgram } from "./store/slices/programs";
 import { useDispatch, useSelector } from "react-redux";
-import LoadingScreen from "./components/LoadingScreen";
 
 
 export const ThemeModifierContext = createContext({});
 
 const App = () => {
     const [appTheme, setAppTheme] = useState(defaultTheme);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -55,11 +54,7 @@ const App = () => {
         <ThemeModifierContext.Provider value={{ changeThemeColors }}>
             <ThemeProvider theme={appTheme}>
                 <GlobalStyles />
-                {isLoading ? (
-                    <LoadingScreen onLoadComplete={() => setIsLoading(false)} />
-                ) : (
-                    <Windows />
-                )}
+                <PortfolioLayout />
             </ThemeProvider>
         </ThemeModifierContext.Provider>
     );
