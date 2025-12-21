@@ -466,9 +466,8 @@ const Welcome = (props) => {
             </nav>
             
             <div className="header-content" style={{flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '0 20px', marginTop: '0'}}>
-                <div className="image-container" style={{marginBottom: '18px', position: 'relative'}}>
+                <div className="image-container" style={{marginBottom: '18px'}}>
                     <img src={require("./img/Person.png")} alt="Sudhir Sharma" style={{width: '250px', height: 'auto', filter: 'grayscale(100%)', borderRadius: '0', display: 'block', boxShadow: 'none', border: 'none', background: 'transparent'}} />
-                    <div style={{position: 'absolute', bottom: '0', left: '-50px', right: '-50px', height: '3px', background: '#000'}}></div>
                 </div>
                 <div className="intro-text" style={{fontFamily: 'Georgia, serif', fontSize: '1.4rem', color: '#666', marginBottom: '8px', letterSpacing: '0.5px'}}>
                     Hello! I'm
