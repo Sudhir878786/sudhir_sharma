@@ -1,9 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.2bad5a54.css",
-    "main.js": "/static/js/main.113257e7.js",
-    "static/media/Person.png": "/static/media/Person.a157f55c1203968d1241.png",
-    "static/media/Handsome_Man.png": "/static/media/Handsome_Man.66fb9cc97e3d1cb250ea.png",
+    "main.css": "/static/css/main.07877294.css",
+    "main.js": "/static/js/main.e70889b9.js",
     "static/media/weathre.png": "/static/media/weathre.2406bd2521dfee3dfa4c.png",
     "static/media/covid.jpg": "/static/media/covid.7ee8e2639025c5590e42.jpg",
     "static/media/bitcoin.jpg": "/static/media/bitcoin.db642967702d560b6f12.jpg",
@@ -12,7 +10,7 @@
     "static/media/resumerank.jpg": "/static/media/resumerank.e8b9fea3efca30efe081.jpg",
     "static/media/metamask.jpg": "/static/media/metamask.acc80a4db1a542336fcc.jpg",
     "static/media/intervuepro.jpg": "/static/media/intervuepro.671fd83b363243dc0662.jpg",
-    "static/media/map.png": "/static/media/map.145789dc3c28d1e201a9.png",
+    "static/media/Person.png": "/static/media/Person.ab23ae11192aff3eecd3.png",
     "static/media/Browser_Icon.png": "/static/media/Browser_Icon.fe74ad5a0c8e3484a1e4.png",
     "static/media/landf.jpg": "/static/media/landf.30734b53981621d28a27.jpg",
     "static/media/Welcome_Icon.png": "/static/media/Welcome_Icon.3594b04d2e508fd46c00.png",
@@ -21,24 +19,17 @@
     "static/media/tps.png": "/static/media/tps.e46c603ad5b47175a89d.png",
     "static/media/screenwise.jpg": "/static/media/screenwise.c93fcbe822a0b9454b8d.jpg",
     "static/media/syncano.jpg": "/static/media/syncano.98486a35c92916ff2b32.jpg",
-    "static/media/testi.svg": "/static/media/testi.cc0c1cf87ef0e4ec8e9dfbe199ce8b30.svg",
     "static/media/image.png": "/static/media/image.83495003efb18ccf76b8.png",
-    "static/media/contact-bg.png": "/static/media/contact-bg.4b4a30b4f5a3bb81d373.png",
     "static/media/AI.png": "/static/media/AI.51a1394a4e896fd22cac.png",
     "static/media/Mail_Icon.png": "/static/media/Mail_Icon.47e4956704e76234da9b.png",
     "static/media/android.png": "/static/media/android.f049067a75ea5fb81313.png",
     "static/media/points3.png": "/static/media/points3.cad43da2de2c987f7951.png",
-    "static/media/points2.png": "/static/media/points2.d1c839b2a78ccbb9c5a3.png",
-    "static/media/canonforces.svg": "/static/media/canonforces.2da67a7edba0c1c3625526afa5f11f88.svg",
-    "static/media/maqsoftware.svg": "/static/media/maqsoftware.c9044a616da98ed0c91b8ea3f193708a.svg",
-    "static/media/screenwise.svg": "/static/media/screenwise.293a53d8d6071ab0ccbf74f205b46917.svg",
-    "static/media/syncano.svg": "/static/media/syncano.4256057caece8019b2c470b60c3aa076.svg",
     "static/media/Blog_Icon.svg": "/static/media/Blog_Icon.88f141b13f3cbd72638cc5507a0d2df9.svg",
     "static/media/Projects_Icon.svg": "/static/media/Projects_Icon.6628b158a65b521c20632c5442ac724c.svg",
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.2bad5a54.css",
-    "static/js/main.113257e7.js"
+    "static/css/main.07877294.css",
+    "static/js/main.e70889b9.js"
   ]
 }
